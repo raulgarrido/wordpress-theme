@@ -50,16 +50,6 @@ function remove_admin_login_header() {
 
 class CurrentTheme {
 	function __construct(){
-		// Enable Block Editor for Products
-		// add_filter( 'woocommerce_taxonomy_args_product_cat', array($this, 'enableWoocommerce') );
-		// add_filter( 'woocommerce_taxonomy_args_product_tag', array($this, 'enableWoocommerce') );
-		// add_filter( 'use_block_editor_for_post_type', array($this, 'woocommerceBlockEditor'), 10, 2 );
-
-		// remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
-		// // add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_checkout_coupon_form', 10 );
-		// remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
-		// add_action( 'woocommerce_checkout_before_order_review', 'woocommerce_order_review', 10 );
-
 		add_action('init', array($this, 'initConfig'));
 		add_theme_support('html5', array('search-form'));
 		add_theme_support('post-thumbnails');
@@ -74,34 +64,19 @@ class CurrentTheme {
 				'footer_navigation' => 'Social Media',
 			]
 		);
-		add_action( 'woocommerce_checkout_terms_and_conditions', array($this, 'termsPage'));
 		add_filter( 'query_vars', array($this, 'customQueryVars') );
 	}
 	function customQueryVars( $q_vars ) {
 		$q_vars[] = 'paged';
 		$q_vars[] = 'page';
-		$q_vars[] = 'ubicacion';
 		$q_vars[] = 'max-results';
 		return $q_vars;
-	}	
-	function termsPage(){
-		remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_checkout_privacy_policy_text', 20 );
-		?>
-		<div class="col-xxs-12 flex-center text-center padding-bottom">
-			<p class="margin-zero terms-text padding">
-				Tu información personal será usada para procesar tu petición y para otros propósitos descritos en las <a href="<?php echo get_privacy_policy_url(); ?>">Políticas de privacidad</a>.		
-			</p>
-		</div>
-		<?php
 	}
 	function initConfig(){
-		// Cute titles
-		add_filter('wp_title', 'wp_strip_all_tags', 8);
+		add_filter('wp_title', 'wp_strip_all_tags', 8); // Cute titles
 		add_filter('pre_get_document_title', 'wp_strip_all_tags', 9);
-		// Enable excerpts for pages
-		add_post_type_support('page', 'excerpt');
-		// custom post_types
-		$this->customPostTypes();
+		add_post_type_support('page', 'excerpt'); // Enable excerpts for pages
+		$this->customPostTypes(); // custom post_types
 	}
 	function customPostTypes() {
         // Include Custom Gutenberg Blocks
@@ -109,16 +84,6 @@ class CurrentTheme {
         foreach (glob($custom_post_types_path . "*.php") as $this_post_type) {
 			include_once($this_post_type);
         }		
-	}
-	function woocommerceBlockEditor($is_enabled, $post_type){
-		if ( $post_type == 'product' && current_user_can( 'edit_posts' ) ) {
-			$is_enabled = true;
-		}
-		return $is_enabled;
-	}
-	function enableWoocommerce($args) {
-		$args['show_in_rest'] = true;
-		return $args;
 	}
 }
 $CurrentTheme = new CurrentTheme;
@@ -146,19 +111,17 @@ class CurrentBlocks {
 	}
 	public function globalStyles(){
 		wp_enqueue_style(
-			'grid-styles',
-			get_template_directory_uri() . '/build/all.min.css',
+			'custom-styles',
+			get_template_directory_uri() . '/build/custom-styles.min.css',
 			[],
 			DEV_VERSION
 		);
-
 		wp_enqueue_style(
 			'public-block-styles',
 			get_template_directory_uri() . '/build/public-block-styles.min.css',
 			[],
 			DEV_VERSION
 		);
-
 		wp_enqueue_script(
 			'theme-scripts',
 			get_template_directory_uri() . '/src/js/theme.js',
@@ -168,14 +131,20 @@ class CurrentBlocks {
 	}
 	public function adminStyles(){
 		wp_enqueue_style(
-			'grid-styles',
-			get_template_directory_uri() . '/build/all.min.css',
+			'custom-styles',
+			get_template_directory_uri() . '/build/custom-styles.min.css',
 			[],
 			DEV_VERSION
 		);		
 		wp_enqueue_style(
 			'admin-block-styles',
 			get_template_directory_uri() . '/build/admin-block-styles.min.css',
+			[],
+			DEV_VERSION
+		);
+		wp_enqueue_script(
+			'theme-scripts',
+			get_template_directory_uri() . '/src/js/theme.js',
 			[],
 			DEV_VERSION
 		);		
