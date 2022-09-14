@@ -8,6 +8,16 @@ cssimport = require('gulp-cssimport'),
 options = {},
 rename = require('gulp-rename');
 
+gulp.task('fonts', function () {
+    return new Promise(async (resolve, reject) => {
+        await gulp.src('src/css/fonts.css')
+            .pipe(cssimport(options))
+            .pipe(gulp.dest('build/'))
+            resolve();
+    })
+});
+
+
 gulp.task('all-css', function () {
     return new Promise(async (resolve, reject) => {
         await gulp.src('src/css/whole.css')
@@ -26,7 +36,7 @@ gulp.task('all-css', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch(['build/blocks/**/*.css', 'src/css/custom.css', 'src/css/grid.css', 'src/css/vars.css', 'src/css/whole.css', 'src/acf-blocks/*/style.css', 'src/acf-blocks/*/editor.css']).on(
+    gulp.watch(['build/blocks/**/*.css', 'src/css/custom.css', 'src/css/grid.css', 'src/css/vars.css', 'src/css/whole.css', 'src/css/fonts.css', 'src/acf-blocks/*/style.css', 'src/acf-blocks/*/editor.css']).on(
         'change',
         gulp.series(
             'default'
@@ -63,6 +73,7 @@ gulp.task('admin-block-styles', done => {
 gulp.task(
     'default',
     gulp.series(
+        'fonts',
         'all-css',
         'public-block-styles',
         'admin-block-styles',

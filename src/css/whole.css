@@ -1,13 +1,7 @@
 /*
 * All CSS
-* Hope you know what you're doing. (Just kidding) 
+* Hope you know what you're doing. (Just kidding) .
 */
-
-/* Fonts CSS */
-@import 'https://fonts.googleapis.com/css2?family=Livvic:wght@300;400;600;700&family=Mulish:wght@300;400;700&display=swap';
-
-/* Icons CSS */
-@import 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
 
 /* Grid CSS */
 @import './vars.css';

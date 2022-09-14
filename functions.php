@@ -14,7 +14,7 @@ $this_theme = wp_get_theme();
 define('THEME_NAME', $this_theme->get('Name'));
 define('THEME_IMG_PATH', (get_template_directory_uri() . '/src/images/'));
 define('THEME_TEXTDOMAIN', $this_theme->get('TextDomain'));
-define('DEV_VERSION', '0.1.0.0');
+define('DEV_VERSION', '0.1.0.1');
 // add_theme_support('woocommerce');
 
 //Image sizes
@@ -111,17 +111,23 @@ class CurrentBlocks {
 	}
 	public function globalStyles(){
 		wp_enqueue_style(
-			'custom-styles',
-			get_template_directory_uri() . '/build/custom-styles.min.css',
+			'font-styles',
+			get_template_directory_uri() . '/build/fonts.css',
 			[],
 			DEV_VERSION
-		);
+		);		
 		wp_enqueue_style(
 			'public-block-styles',
 			get_template_directory_uri() . '/build/public-block-styles.min.css',
 			[],
 			DEV_VERSION
 		);
+		wp_enqueue_style(
+			'custom-styles',
+			get_template_directory_uri() . '/build/custom-styles.min.css',
+			[],
+			DEV_VERSION
+		);		
 		wp_enqueue_script(
 			'theme-scripts',
 			get_template_directory_uri() . '/src/js/theme.js',
@@ -129,19 +135,25 @@ class CurrentBlocks {
 			DEV_VERSION
 		);
 	}
-	public function adminStyles(){
+	public function adminStyles(){	
 		wp_enqueue_style(
-			'custom-styles',
-			get_template_directory_uri() . '/build/custom-styles.min.css',
+			'font-styles',
+			get_template_directory_uri() . '/build/fonts.css',
 			[],
 			DEV_VERSION
-		);		
+		);			
 		wp_enqueue_style(
 			'admin-block-styles',
 			get_template_directory_uri() . '/build/admin-block-styles.min.css',
 			[],
 			DEV_VERSION
 		);
+		wp_enqueue_style(
+			'custom-styles',
+			get_template_directory_uri() . '/build/custom-styles.min.css',
+			[],
+			DEV_VERSION
+		);		
 		wp_enqueue_script(
 			'theme-scripts',
 			get_template_directory_uri() . '/src/js/theme.js',
