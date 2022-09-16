@@ -341,8 +341,8 @@ body.logged-in {
   padding-bottom: var(--padding-section);
 }
 .padding-footer {
-  padding-top: var(--footer-padding);
-  padding-bottom: var(--footer-padding);
+  padding-top: var(--padding-footer);
+  padding-bottom: var(--padding-footer);
 }
 .margin-zero{
   margin: 0px !important;
@@ -692,5 +692,8 @@ ul.col li a {
   align-items: flex-start;  
 }
 body > .wp-site-blocks {
-  align-content: space-between;
+  align-content: stretch;
+}
+footer{
+  margin-top: auto;
 }

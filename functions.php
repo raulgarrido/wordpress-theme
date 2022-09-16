@@ -14,7 +14,7 @@ $this_theme = wp_get_theme();
 define('THEME_NAME', $this_theme->get('Name'));
 define('THEME_IMG_PATH', (get_template_directory_uri() . '/src/images/'));
 define('THEME_TEXTDOMAIN', $this_theme->get('TextDomain'));
-define('DEV_VERSION', '0.1.0.1');
+define('DEV_VERSION', '0.1.0.13');
 // add_theme_support('woocommerce');
 
 //Image sizes
