@@ -1,14 +1,16 @@
 :root{
-    --single-padding: 16px;
-    --horizontal-padding: 16px;
-    --text-primary-color: #6E6E6E;
-    --text-secundary-color: #000000;
-    --text-secundary-color: #000000;
     --admin-nav-bar-height: 0px;
-    --theme-header-height: 72px;
+    --padding-single: 16px;
+    --padding-top: 1rem;
+    --padding-bottom: 2rem;
+    --padding-horizontal: 16px;
+    --padding-vertical: 16px;
     --padding-section: 3rem;
-    --top-padding: 1rem;
-    --bottom-padding: 2rem;
+    --text-color: rgba(0,0,0,0.87);
+    --text-primary-color: #ffffff;
+    --text-secundary-color: #ffffff;
+    --theme-header-height: 72px;
+    --theme-footer-height: 72px;
 }
 body.logged-in{
     --admin-nav-bar-height: var(--wp-admin--admin-bar--height); 
